@@ -35,4 +35,11 @@ public class UserController {
 
         return "1";
     }
+
+    @RequestMapping("/getUserCar")
+    public String getUserCar(String id){
+        User user = userService.getUserCar(Long.valueOf(id));
+
+        return JSON.toJSONString(user);
+    }
 }

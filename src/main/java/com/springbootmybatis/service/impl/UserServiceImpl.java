@@ -28,4 +28,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUserInfo() {
         return userMapper.getAllUserInfo();
     }
+
+    @Override
+    public User getUserCar(Long id) {
+        return userMapper.getUserWithCar(id);
+    }
 }

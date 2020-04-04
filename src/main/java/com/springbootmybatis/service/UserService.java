@@ -11,4 +11,6 @@ public interface UserService {
     User getUserInfo(Long id);
 
     List<User> getAllUserInfo();
+
+    User getUserCar(Long id);
 }

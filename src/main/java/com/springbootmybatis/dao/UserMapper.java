@@ -36,4 +36,16 @@ public interface UserMapper {
                     one = @One(select = "com.springbootmybatis.dao.AddressMapper.findAddressById", fetchType = FetchType.EAGER))
     })
     List<User> getAllUserInfo();
+
+    @Select("SELECT * FROM `user` WHERE id = #{id}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "nickname", column = "nick_name"),
+            @Result(property = "addressId", column = "address_id"),
+            @Result(
+                    property = "cars",
+                    column = "id",
+                    many = @Many(select = "com.springbootmybatis.dao.CarMapper.findCarByUserId", fetchType = FetchType.EAGER))
+    })
+    User getUserWithCar(Long id);
 }
