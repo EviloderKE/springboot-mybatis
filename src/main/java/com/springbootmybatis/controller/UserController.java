@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RequestMapping("/user")
 @RestController
@@ -23,5 +24,15 @@ public class UserController {
         System.out.println(user.getAddressId());
         return JSON.toJSONString(user);
     }
-    
+
+    @RequestMapping("/getAllUserInfo")
+    public String getAllUserInfo(){
+        List<User> userList = userService.getAllUserInfo();
+        for (User user : userList){
+            System.out.println(user);
+            System.out.println(user.getAddress());
+        }
+
+        return "1";
+    }
 }
