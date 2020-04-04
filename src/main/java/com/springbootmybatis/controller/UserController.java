@@ -19,8 +19,9 @@ public class UserController {
     @RequestMapping("/getUserInfo")
     public String getUserInfo(String id){
         User user = userService.getUserInfo(Long.valueOf(id));
-
-        String jsonOutput= JSON.toJSONString(user);
-        return jsonOutput;
+        System.out.println(user.getAddress());
+        System.out.println(user.getAddressId());
+        return JSON.toJSONString(user);
     }
+    
 }

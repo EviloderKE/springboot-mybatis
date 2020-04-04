@@ -16,13 +16,10 @@ public interface UserMapper {
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "nickname", column = "nick_name"),
+            @Result(property = "addressId", column = "address_id"),
             @Result(
                     property = "address",
                     column = "address_id", one = @One(select = "com.springbootmybatis.dao.AddressMapper.findAddressById", fetchType = FetchType.EAGER))
     })
-    /*@Results({
-            @Result(property = "id", column = "id"),
-            @Result(property = "nickname", column = "nick_name"),
-    })*/
     User findUserWithAddress(@Param("id") Long id);
 }

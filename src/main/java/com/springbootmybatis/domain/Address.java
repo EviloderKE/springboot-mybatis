@@ -28,4 +28,14 @@ public class Address {
     public void setCity(String city) {
         this.city = city;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Address{");
+        sb.append("id=").append(id);
+        sb.append(", province='").append(province).append('\'');
+        sb.append(", city='").append(city).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
