@@ -14,7 +14,7 @@ public interface UserMapper {
     @Insert("insert into user(name) values(#{name})")
     int add(User user);
 
-    @Select("SELECT * FROM `user` where id = #{id}")
+    /*@Select("SELECT * FROM `user` where id = #{id}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "nickname", column = "nick_name"),
@@ -23,7 +23,18 @@ public interface UserMapper {
                     property = "address",
                     column = "address_id", one = @One(select = "com.springbootmybatis.dao.AddressMapper.findAddressById", fetchType = FetchType.EAGER))
     })
+    User findUserWithAddress(@Param("id") Long id);*/
+
+    @Select("SELECT u.id,u.nick_name,u.address_id,a.province,a.city FROM `user` u left join `address` a on u.address_id = a.id where u.id = #{id}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "nickname", column = "nick_name"),
+            @Result(property = "addressId", column = "address_id"),
+            @Result(property="address.province", column="province"),
+            @Result(property="address.city", column="city"),
+    })
     User findUserWithAddress(@Param("id") Long id);
+
 
     @Select("select * from `user`")
     @Results({
