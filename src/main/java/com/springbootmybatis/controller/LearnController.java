@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.springbootmybatis.domain.LearnResource;
 import com.springbootmybatis.service.LearnService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.applet.Applet;
+import java.util.List;
 
+@Slf4j
 @RequestMapping("/learn")
 @RestController
 public class LearnController {
@@ -94,6 +97,10 @@ public class LearnController {
 
     @PostMapping("/list")
     public String list(){
+        log.info(String.valueOf(1111));
+
+        log.info("Set score {} for Person {} ok.", 1, 22);
+
         int startPage= 2;
         int pageSize= 2;
 
@@ -101,6 +108,9 @@ public class LearnController {
         PageHelper.orderBy("id ASC");
 
         PageInfo<LearnResource> pageInfo = new PageInfo<>(learnService.queryLearnResourceList());
+
+        //List<LearnResource> list = learnService.queryLearnResourceList();
+
 
         String jsonString = JSON.toJSONString(pageInfo);
 
