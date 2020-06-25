@@ -1,8 +1,12 @@
 package com.springbootmybatis.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.springbootmybatis.domain.LearnResource;
 import com.springbootmybatis.service.LearnService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -86,6 +90,21 @@ public class LearnController {
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test(){
         return "2";
+    }
+
+    @PostMapping("/list")
+    public String list(){
+        int startPage= 2;
+        int pageSize= 2;
+
+        PageHelper.startPage(startPage, pageSize);
+        PageHelper.orderBy("id ASC");
+
+        PageInfo<LearnResource> pageInfo = new PageInfo<>(learnService.queryLearnResourceList());
+
+        String jsonString = JSON.toJSONString(pageInfo);
+
+        return jsonString;
     }
 
 }

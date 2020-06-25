@@ -6,6 +6,8 @@ import com.springbootmybatis.service.LearnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LearnServiceImpl implements LearnService {
 
@@ -36,4 +38,10 @@ public class LearnServiceImpl implements LearnService {
     public LearnResource queryById(Long id) {
         return learnMapper.queryById(id);
     }
+
+    @Override
+    public List<LearnResource> queryLearnResourceList() {
+        return learnMapper.queryLearnResourceList();
+    }
+
 }
