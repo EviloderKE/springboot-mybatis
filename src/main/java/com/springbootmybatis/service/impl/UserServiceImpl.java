@@ -1,7 +1,7 @@
 package com.springbootmybatis.service.impl;
 
 import com.springbootmybatis.dao.UserMapper;
-import com.springbootmybatis.domain.User;
+import com.springbootmybatis.po.User;
 import com.springbootmybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

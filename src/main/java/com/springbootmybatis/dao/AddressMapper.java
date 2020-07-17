@@ -1,6 +1,6 @@
 package com.springbootmybatis.dao;
 
-import com.springbootmybatis.domain.Address;
+import com.springbootmybatis.po.Address;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;

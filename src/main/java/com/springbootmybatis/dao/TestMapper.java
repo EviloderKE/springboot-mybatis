@@ -1,7 +1,7 @@
 package com.springbootmybatis.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.springbootmybatis.domain.Test;
+import com.springbootmybatis.po.Test;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 

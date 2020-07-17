@@ -1,6 +1,6 @@
 package com.springbootmybatis.service;
 
-import com.springbootmybatis.domain.Test;
+import com.springbootmybatis.po.Test;
 
 import java.util.List;
 

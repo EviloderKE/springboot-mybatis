@@ -1,4 +1,4 @@
-package com.springbootmybatis.domain;
+package com.springbootmybatis.po;
 
 import lombok.Data;
 

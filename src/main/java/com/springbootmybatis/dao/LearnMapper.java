@@ -1,11 +1,10 @@
 package com.springbootmybatis.dao;
 
-import com.springbootmybatis.domain.LearnResource;
+import com.springbootmybatis.po.LearnResource;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 @Component

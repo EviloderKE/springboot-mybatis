@@ -3,7 +3,7 @@ package com.springbootmybatis.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.springbootmybatis.domain.LearnResource;
+import com.springbootmybatis.po.LearnResource;
 import com.springbootmybatis.service.LearnService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.applet.Applet;
-import java.util.List;
 
 @Slf4j
 @RequestMapping("/learn")

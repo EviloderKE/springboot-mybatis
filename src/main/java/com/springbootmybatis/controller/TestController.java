@@ -1,7 +1,7 @@
 package com.springbootmybatis.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.springbootmybatis.domain.Test;
+import com.springbootmybatis.po.Test;
 import com.springbootmybatis.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

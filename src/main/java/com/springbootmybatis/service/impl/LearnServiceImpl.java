@@ -1,7 +1,7 @@
 package com.springbootmybatis.service.impl;
 
 import com.springbootmybatis.dao.LearnMapper;
-import com.springbootmybatis.domain.LearnResource;
+import com.springbootmybatis.po.LearnResource;
 import com.springbootmybatis.service.LearnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
