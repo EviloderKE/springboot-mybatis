@@ -5,8 +5,6 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Component;
 
-@Mapper
-@Component
 public interface UserMapper {
 
     @Insert("insert into user(name) values(#{name})")

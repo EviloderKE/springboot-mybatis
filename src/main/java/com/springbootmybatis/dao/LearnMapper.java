@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
-@Component
 public interface LearnMapper {
     int add(LearnResource learnResource);
 

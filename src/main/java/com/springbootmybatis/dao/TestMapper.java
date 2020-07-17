@@ -5,7 +5,5 @@ import com.springbootmybatis.po.Test;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
-@Mapper
-@Component
 public interface TestMapper extends BaseMapper<Test> {
 }
