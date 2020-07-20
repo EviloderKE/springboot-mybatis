@@ -5,6 +5,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.springbootmybatis.po.LearnResource;
 import com.springbootmybatis.service.LearnService;
+import com.springbootmybatis.vo.result.FailResult;
+import com.springbootmybatis.vo.result.Result;
+import com.springbootmybatis.vo.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Slf4j
 @RequestMapping("/learn")
@@ -22,23 +26,14 @@ public class LearnController {
     @Autowired
     private LearnService learnService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(HttpServletRequest request){
-        String author = request.getParameter("author");
-        String title = request.getParameter("title");
-        String url = request.getParameter("url");
-
-        LearnResource learnResource = new LearnResource();
-        learnResource.setAuthor(author);
-        learnResource.setTitle(title);
-        learnResource.setUrl(url);
-
+    @PostMapping(value = "/add")
+    public Result add(@Valid LearnResource learnResource){
         int index = learnService.add(learnResource);
 
         if(index > 0){
-            return "添加成功";
+            return new SuccessResult<>();
         }else{
-            return "添加失败";
+            return new FailResult<>();
         }
     }
 
