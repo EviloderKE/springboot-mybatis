@@ -10,10 +10,7 @@ import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -35,6 +32,23 @@ public class LearnController {
         }else{
             return new FailResult<>();
         }
+    }
+
+    @PostMapping(value = "/addBody")
+    public Result addBody(@Valid @RequestBody LearnResource learnResource){
+        int index = learnService.add(learnResource);
+
+        if(index > 0){
+            return new SuccessResult<>();
+        }else{
+            return new FailResult<>();
+        }
+    }
+
+    @PostMapping(value = "/test")
+    public LearnResource test(LearnResource learnResource){
+        learnResource.setAuthor("abc");
+        return learnResource;
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -81,11 +95,6 @@ public class LearnController {
         }else{
             return "删除失败";
         }
-    }
-
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test(){
-        return "2";
     }
 
     @PostMapping("/list")
