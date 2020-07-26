@@ -54,6 +54,10 @@
         DELETE FROM learn_resource WHERE id = #{id}
     </delete>
 
+    <insert id="addOne" parameterType="com.springbootmybatis.po.LearnResource" >
+        INSERT INTO learn_resource (author, title,url) VALUES (#{author}, #{title}, #{url})
+    </insert>
+
 
 
 </mapper>

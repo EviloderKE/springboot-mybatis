@@ -1,10 +1,13 @@
 package com.springbootmybatis.service.impl;
 
 import com.springbootmybatis.dao.LearnMapper;
+import com.springbootmybatis.enums.ApplicationEnum;
+import com.springbootmybatis.exception.ApplicationException;
 import com.springbootmybatis.po.LearnResource;
 import com.springbootmybatis.service.LearnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -42,6 +45,18 @@ public class LearnServiceImpl implements LearnService {
     @Override
     public List<LearnResource> queryLearnResourceList() {
         return learnMapper.queryLearnResourceList();
+    }
+
+    @Override
+    @Transactional(rollbackFor = {Exception.class})
+    public int insertOne(LearnResource learnResource) {
+
+        int res = learnMapper.addOne(learnResource);
+        if(res > 0){
+            throw new ApplicationException(ApplicationEnum.REQUEST_FREQUENTLY);
+        }
+
+        return res;
     }
 
 }

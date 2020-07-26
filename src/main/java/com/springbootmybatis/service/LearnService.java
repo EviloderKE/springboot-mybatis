@@ -18,4 +18,5 @@ public interface LearnService {
 
     List<LearnResource> queryLearnResourceList();
 
+    int insertOne(LearnResource learnResource);
 }

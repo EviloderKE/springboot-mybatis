@@ -18,4 +18,6 @@ public interface LearnMapper {
     int deleteByIds(@Param("ids") String ids);
 
     List<LearnResource> queryLearnResourceList();
+
+    int addOne(LearnResource learnResource);
 }
