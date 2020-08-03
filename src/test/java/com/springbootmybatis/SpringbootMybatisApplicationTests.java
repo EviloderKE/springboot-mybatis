@@ -1,6 +1,9 @@
 package com.springbootmybatis;
 
+import com.springbootmybatis.po.TestJpa;
+import com.springbootmybatis.service.TestService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,6 +14,9 @@ import java.util.stream.Stream;
 
 @SpringBootTest
 class SpringbootMybatisApplicationTests {
+
+    @Autowired
+    TestService testService;
 
     @Test
     void contextLoads() {
@@ -93,6 +99,14 @@ class SpringbootMybatisApplicationTests {
 
         Date now = new Date();
         System.out.println(now);
+    }
+
+    @Test
+    void jpa(){
+        TestJpa testJpa = new TestJpa();
+        testJpa.setName("jpa");
+
+        TestJpa test = testService.addJpa(testJpa);
     }
 
 }

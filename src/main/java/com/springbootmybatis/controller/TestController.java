@@ -1,16 +1,15 @@
 package com.springbootmybatis.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.springbootmybatis.po.LearnResource;
-import com.springbootmybatis.po.Test;
-import com.springbootmybatis.po.Time;
-import com.springbootmybatis.po.TimeDate;
+import com.springbootmybatis.po.*;
 import com.springbootmybatis.service.LearnService;
 import com.springbootmybatis.service.TestService;
 import com.springbootmybatis.service.TimeService;
 import com.springbootmybatis.vo.result.FailResult;
 import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/test")
 public class TestController {
@@ -88,6 +88,22 @@ public class TestController {
         }
     }
 
+    @GetMapping("addJpa")
+    public Result addJpa(){
+        TestJpa testJpa = new TestJpa();
+        testJpa.setName("jpa");
+
+        TestJpa test = testService.addJpa(testJpa);
+
+        log.info("返回值:{}", test);
+        log.info("返回值:{}", JSON.toJSONString(test));
+        if(ObjectUtils.isEmpty(test)){
+            return new FailResult<>();
+        }else{
+            return new SuccessResult<>();
+        }
+
+    }
 
 
 }
