@@ -5,6 +5,7 @@ import com.springbootmybatis.po.*;
 import com.springbootmybatis.service.LearnService;
 import com.springbootmybatis.service.TestService;
 import com.springbootmybatis.service.TimeService;
+import com.springbootmybatis.service.impl.TestJpaServiceImpl;
 import com.springbootmybatis.vo.result.FailResult;
 import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
@@ -34,6 +35,9 @@ public class TestController {
 
     @Autowired
     private TimeService timeService;
+
+    @Autowired
+    private TestJpaServiceImpl testJpaService;
 
     @RequestMapping("/test")
     public String test(){
@@ -103,6 +107,13 @@ public class TestController {
             return new SuccessResult<>();
         }
 
+    }
+
+    @GetMapping("getJpa")
+    public void getJpa(){
+        Long id = (long)2;
+        TestJpa a = testJpaService.findById(id);
+        log.info("查询结果:{}", JSON.toJSONString(a));
     }
 
 
