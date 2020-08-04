@@ -11,4 +11,5 @@ public interface TestService {
 
     TestJpa addJpa(TestJpa testJpa);
 
+    int addOneByPlus(Test test);
 }

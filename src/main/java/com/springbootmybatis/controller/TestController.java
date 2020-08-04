@@ -116,5 +116,13 @@ public class TestController {
         log.info("查询结果:{}", JSON.toJSONString(a));
     }
 
+    @GetMapping("addOneByPlus")
+    public void addOneByPlus(){
+        Test test = new Test();
+        test.setName("plus");
+        int a = testService.addOneByPlus(test);
+        log.info("插入结果:{}", a);
+    }
+
 
 }
