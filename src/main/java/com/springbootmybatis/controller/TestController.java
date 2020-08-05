@@ -5,12 +5,11 @@ import com.springbootmybatis.po.*;
 import com.springbootmybatis.service.LearnService;
 import com.springbootmybatis.service.TestService;
 import com.springbootmybatis.service.TimeService;
-import com.springbootmybatis.service.impl.TestJpaServiceImpl;
+import com.springbootmybatis.service.impl.JpaServiceImpl;
 import com.springbootmybatis.vo.result.FailResult;
 import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,9 +34,6 @@ public class TestController {
 
     @Autowired
     private TimeService timeService;
-
-    @Autowired
-    private TestJpaServiceImpl testJpaService;
 
     @RequestMapping("/test")
     public String test(){
@@ -90,30 +86,6 @@ public class TestController {
         }else{
             return new FailResult<>();
         }
-    }
-
-    @GetMapping("addJpa")
-    public Result addJpa(){
-        TestJpa testJpa = new TestJpa();
-        testJpa.setName("jpa");
-
-        TestJpa test = testService.addJpa(testJpa);
-
-        log.info("返回值:{}", test);
-        log.info("返回值:{}", JSON.toJSONString(test));
-        if(ObjectUtils.isEmpty(test)){
-            return new FailResult<>();
-        }else{
-            return new SuccessResult<>();
-        }
-
-    }
-
-    @GetMapping("getJpa")
-    public void getJpa(){
-        Long id = (long)2;
-        TestJpa a = testJpaService.findById(id);
-        log.info("查询结果:{}", JSON.toJSONString(a));
     }
 
     @GetMapping("addOneByPlus")

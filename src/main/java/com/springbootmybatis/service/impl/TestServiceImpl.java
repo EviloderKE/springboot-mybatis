@@ -24,11 +24,6 @@ public class TestServiceImpl implements TestService {
         return testMapper.selectList(null);
     }
 
-    @Override
-    public TestJpa addJpa(TestJpa testJpa) {
-        return testJpaMapper.save(testJpa);
-    }
-
     public int addOneByPlus(Test test){
         return testMapper.insert(test);
     }

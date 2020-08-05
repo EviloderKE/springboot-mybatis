@@ -101,12 +101,4 @@ class SpringbootMybatisApplicationTests {
         System.out.println(now);
     }
 
-    @Test
-    void jpa(){
-        TestJpa testJpa = new TestJpa();
-        testJpa.setName("jpa");
-
-        TestJpa test = testService.addJpa(testJpa);
-    }
-
 }
