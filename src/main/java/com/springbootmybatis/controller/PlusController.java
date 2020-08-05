@@ -5,6 +5,7 @@ import com.springbootmybatis.service.PlusService;
 import com.springbootmybatis.vo.result.FailResult;
 import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RequestMapping("plus")
 @RestController
+@Slf4j
 public class PlusController {
 
     @Autowired
@@ -41,6 +43,14 @@ public class PlusController {
         }else{
             return new FailResult<>();
         }
+    }
+
+    @GetMapping("addOneByPlus")
+    public void addOneByPlus(){
+        Test test = new Test();
+        test.setName("plusOne");
+        int a = plusService.addOneByPlus(test);
+        log.info("插入结果:{}", a);
     }
 
 }

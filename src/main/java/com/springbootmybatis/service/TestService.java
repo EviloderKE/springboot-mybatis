@@ -7,6 +7,4 @@ import java.util.List;
 public interface TestService {
 
     List<Test> getList();
-
-    int addOneByPlus(Test test);
 }

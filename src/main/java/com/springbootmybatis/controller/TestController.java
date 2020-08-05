@@ -88,13 +88,4 @@ public class TestController {
         }
     }
 
-    @GetMapping("addOneByPlus")
-    public void addOneByPlus(){
-        Test test = new Test();
-        test.setName("plus");
-        int a = testService.addOneByPlus(test);
-        log.info("插入结果:{}", a);
-    }
-
-
 }

@@ -24,7 +24,4 @@ public class TestServiceImpl implements TestService {
         return testMapper.selectList(null);
     }
 
-    public int addOneByPlus(Test test){
-        return testMapper.insert(test);
-    }
 }
