@@ -1,5 +1,7 @@
 package com.springbootmybatis.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.springbootmybatis.po.Test;
 import com.springbootmybatis.service.PlusService;
 import com.springbootmybatis.vo.result.FailResult;
@@ -51,6 +53,25 @@ public class PlusController {
         test.setName("plusOne");
         int a = plusService.addOneByPlus(test);
         log.info("插入结果:{}", a);
+    }
+
+    @GetMapping("search")
+    public void search(){
+        QueryWrapper<Test> qw1 = new QueryWrapper<>();
+        qw1.eq("age", 1);
+        Test t1 = plusService.getOne(qw1);
+        log.info("等于1getOne:{}", JSON.toJSONString(t1));
+
+        // 不能查询有多种情况
+        /*QueryWrapper<Test> qw2 = new QueryWrapper<>();
+        qw2.ge("age", 1);
+        Test t2 = plusService.getOne(qw2);
+        log.info("大于等于1getOne:{}", JSON.toJSONString(t2));*/
+
+        QueryWrapper<Test> qw3 = new QueryWrapper<>();
+        qw3.ge("age", 1);
+        List<Test> t3 = plusService.list(qw3);
+        log.info("大于等于1list:{}", JSON.toJSONString(t3));
     }
 
 }
