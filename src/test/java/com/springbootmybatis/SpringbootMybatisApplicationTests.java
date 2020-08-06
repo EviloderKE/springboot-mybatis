@@ -2,6 +2,8 @@ package com.springbootmybatis;
 
 import com.springbootmybatis.po.TestJpa;
 import com.springbootmybatis.service.TestService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SpringBootTest
+@Slf4j
 class SpringbootMybatisApplicationTests {
 
     @Autowired
@@ -99,6 +102,17 @@ class SpringbootMybatisApplicationTests {
 
         Date now = new Date();
         System.out.println(now);
+    }
+
+    @Test
+    void test2(){
+
+        boolean b1 = StringUtils.isBlank("    ");
+        log.info("{}", b1);  // true
+
+        boolean b2 = StringUtils.isEmpty("    ");
+        log.info("{}", b2);   // false
+
     }
 
 }
