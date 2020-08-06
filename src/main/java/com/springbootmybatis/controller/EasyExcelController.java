@@ -18,6 +18,7 @@ public class EasyExcelController {
 
     @PostMapping("upload")
     public String upload(MultipartFile file) throws IOException {
+        //EasyExcel.read(file.getInputStream(), UserExcel.class, new UserExcelListener()).sheet().headRowNumber(指定行).doRead();
         EasyExcel.read(file.getInputStream(), UserExcel.class, new UserExcelListener()).sheet().doRead();
         return "success";
     }

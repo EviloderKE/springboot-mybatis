@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 public class UserExcelListener extends AnalysisEventListener<UserExcel> {
@@ -18,6 +19,11 @@ public class UserExcelListener extends AnalysisEventListener<UserExcel> {
     private static final int BATCH_COUNT = 2;
 
     List<UserExcel> list = new ArrayList<>(BATCH_COUNT);
+
+    @Override
+    public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {
+        log.info("解析到一条头数据:{}", JSON.toJSONString(headMap));
+    }
 
     @Override
     public void invoke(UserExcel userExcel, AnalysisContext analysisContext) {
