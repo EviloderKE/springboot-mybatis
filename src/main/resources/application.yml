@@ -1,0 +1,38 @@
+logging:
+  file:
+    path: ./logs
+  level:
+    com:
+      springbootmybatis:
+        dao: DEBUG
+    org:
+      springframework:
+        jdbc:
+          datasource:
+            DataSourceTransactionManager: DEBUG
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+
+pagehelper:
+  helperDialect: mysql
+  params: count=countSql
+  reasonable: true
+
+spring:
+  jpa:
+    show-sql: true
+  profiles:
+    active: '@env@'
+  redis:
+    database: 0
+    host: localhost
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: 1ms
+        min-idle: 0
+      shutdown-timeout: 100ms
+    password: ''
+    port: 6379
+    timeout: 2000ms
