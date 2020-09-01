@@ -36,3 +36,8 @@ spring:
     password: ''
     port: 6379
     timeout: 2000ms
+  rabbitmq:
+    addresses: localhost
+    port: 5672
+    username: root
+    password: 123456
