@@ -1,4 +1,4 @@
-package com.springbootmybatis.Excel;
+package com.springbootmybatis.excel;
 
 import com.alibaba.excel.converters.Converter;
 import com.alibaba.excel.enums.CellDataTypeEnum;

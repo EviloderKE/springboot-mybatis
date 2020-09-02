@@ -2,7 +2,7 @@ package com.springbootmybatis.qo;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
-import com.springbootmybatis.Excel.GenderConverter;
+import com.springbootmybatis.excel.GenderConverter;
 import lombok.Data;
 
 @Data
