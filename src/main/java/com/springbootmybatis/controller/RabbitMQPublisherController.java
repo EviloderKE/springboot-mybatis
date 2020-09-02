@@ -15,19 +15,13 @@ public class RabbitMQPublisherController {
 
     @GetMapping("sendEmail1")
     public String sendEmail1() {
-        rabbitTemplate.convertAndSend("demo.fanout", "", "welcome to regist lytw13'blog!");
-        return "success";
-    }
 
-    @GetMapping("sendEmail2")
-    public String sendEmail2() {
-        rabbitTemplate.convertAndSend("demo.direct", "zk", "welcome to regist lytw13'blog!");
-        return "success";
-    }
+        rabbitTemplate.convertAndSend("demo.direct", "direct", "demo.direct message");
 
-    @GetMapping("sendEmail3")
-    public String sendEmail3() {
-        rabbitTemplate.convertAndSend("demo.topic", "zk.hello", "welcome to regist lytw13'blog!");
+        rabbitTemplate.convertAndSend("demo.fanout", "", "demo.fanout message");
+
+        rabbitTemplate.convertAndSend("demo.topic", "topic.test", "demo.topic message");
+
         return "success";
     }
 
