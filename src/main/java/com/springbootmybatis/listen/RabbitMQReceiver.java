@@ -4,7 +4,7 @@ import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 public class RabbitMQReceiver {
 
     @RabbitListener(queues = "direct")
