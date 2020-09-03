@@ -16,9 +16,6 @@ public class TestServiceImpl implements TestService {
     @Autowired
     private TestMapper testMapper;
 
-    @Autowired
-    private TestJpaMapper testJpaMapper;
-
     @Override
     public List<Test> getList() {
         return testMapper.selectList(null);
