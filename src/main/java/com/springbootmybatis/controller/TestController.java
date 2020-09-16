@@ -11,11 +11,11 @@ import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -24,6 +24,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/test")
+@Validated
 public class TestController {
 
     @Autowired
@@ -86,6 +87,11 @@ public class TestController {
         }else{
             return new FailResult<>();
         }
+    }
+
+    @GetMapping("aa/{id}")
+    public void aa(@PathVariable() @Min(1) int id){
+        log.info("id:{}", id);
     }
 
 }
