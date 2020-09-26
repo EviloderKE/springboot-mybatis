@@ -2,6 +2,9 @@ package com.springbootmybatis.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.springbootmybatis.dao.DataUsageMapper;
+import com.springbootmybatis.dao.TestMapper;
+import com.springbootmybatis.po.DataUsage;
 import com.springbootmybatis.po.Test;
 import com.springbootmybatis.service.PlusService;
 import com.springbootmybatis.vo.result.FailResult;
@@ -23,6 +26,12 @@ public class PlusController {
 
     @Autowired
     private PlusService plusService;
+
+    @Autowired
+    DataUsageMapper dataUsageMapper;
+
+    @Autowired
+    TestMapper testMapper;
 
     @GetMapping("addBatch")
     public Result<Object> addBatch(){
@@ -72,6 +81,21 @@ public class PlusController {
         qw3.ge("age", 1);
         List<Test> t3 = plusService.list(qw3);
         log.info("大于等于1list:{}", JSON.toJSONString(t3));
+    }
+
+    @GetMapping("/test")
+    public void test(){
+        //List<DataUsage> dataUsages = dataUsageMapper.selectPage(null);
+
+        Test test = new Test();
+        test.setName("aaa");
+        test.setAge(25);
+        int a = testMapper.insert(test);
+
+        System.out.println(a);
+        System.out.println(test.getId());
+
+        //System.out.println(dataUsages);
     }
 
 }
