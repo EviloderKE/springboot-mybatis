@@ -14,7 +14,7 @@ import java.util.Date;
 @RequestMapping("/date")
 public class DateController {
 
-    @GetMapping("/utilDate")
+    @GetMapping("/utildate")
     public void utilDate(){
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -29,19 +29,25 @@ public class DateController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        // 获取时间戳
+        Long time = new Date().getTime();
+        System.out.println(time);
+
+        System.out.println(System.currentTimeMillis());
     }
 
     @GetMapping("/dateutil")
     public void dateUtil(){
-        //当前时间
+        //当前时间 格式：yyyy-MM-dd HH:mm:ss
         Date date = DateUtil.date();
         System.out.println(date);
 
-        //当前时间
+        //当前时间 格式：yyyy-MM-dd HH:mm:ss
         Date date2 = DateUtil.date(Calendar.getInstance());
         System.out.println(date2);
 
-        //当前时间
+        //当前时间 格式：yyyy-MM-dd HH:mm:ss
         Date date3 = DateUtil.date(System.currentTimeMillis());
         System.out.println(date3);
 
