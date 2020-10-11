@@ -115,6 +115,7 @@ public class DateController {
 
 
         Long second2 = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
+        System.out.println(second2);
 
     }
 
