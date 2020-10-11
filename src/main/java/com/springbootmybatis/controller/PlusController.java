@@ -2,6 +2,7 @@ package com.springbootmybatis.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springbootmybatis.dao.DataUsageMapper;
 import com.springbootmybatis.dao.TestMapper;
 import com.springbootmybatis.po.DataUsage;
@@ -94,6 +95,13 @@ public class PlusController {
 
         System.out.println(a);
         System.out.println(test.getId());
+
+        Page<Test> page = new Page<>(1, 2);
+        Page<Test> pageList = testMapper.selectPage(page, new QueryWrapper<>());
+
+        // 不加配置默认全量查询
+        List<Test> list = pageList.getRecords();
+        System.out.println(JSON.toJSONString(list));
 
         //System.out.println(dataUsages);
     }
