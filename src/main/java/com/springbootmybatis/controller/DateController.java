@@ -160,8 +160,21 @@ public class DateController {
         System.out.println(a);
         System.out.println(b);
 
-        // 获得时间戳
+        // 获得秒时间戳
         long second = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).getEpochSecond();
+        System.out.println(second);
+
+        Long second1 = Instant.now().getEpochSecond();// 精确到秒
+        System.out.println(second1);
+
+        Long second2 = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
+        System.out.println(second2);
+
+        // 毫秒
+        Long milliSecond = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+
+
+
         // 将时间戳转为当前时间
         LocalDateTime localDateTimea = LocalDateTime.ofEpochSecond(second, 0, ZoneOffset.ofHours(8));
 
