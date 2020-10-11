@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -116,6 +118,53 @@ public class DateController {
 
         Long second2 = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
         System.out.println(second2);
+
+    }
+
+    @GetMapping("/test")
+    public void aa(){
+        /*Date a = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String aa = simpleDateFormat.format(a);
+        System.out.println(aa);
+
+        Long b = 1602404126000L;
+        Date bb = new Date(b);
+        String bbb = simpleDateFormat.format(bb);
+        System.out.println(bbb);
+
+        long aaa = a.getTime();
+        System.out.println(aaa);
+
+        String c = "2020-10-11 16:21:30";
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date cc = simpleDateFormat1.parse(c);
+            System.out.println(cc);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
+
+        LocalDate localDate = LocalDate.now();
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        LocalTime localTime = LocalTime.now();
+
+        System.out.println(localDate);
+        System.out.println(localDateTime);
+        System.out.println(localTime);
+
+        String a = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String b = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(a);
+        System.out.println(b);
+
+        // 获得时间戳
+        long second = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).getEpochSecond();
+        // 将时间戳转为当前时间
+        LocalDateTime localDateTimea = LocalDateTime.ofEpochSecond(second, 0, ZoneOffset.ofHours(8));
+
 
     }
 
