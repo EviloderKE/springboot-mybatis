@@ -12,6 +12,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 @RestController
 @RequestMapping("/date")
@@ -173,11 +174,22 @@ public class DateController {
         // 毫秒
         Long milliSecond = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
 
+        Long milliSecond1 = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
+        Long milliSecond2 = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId()).toInstant().toEpochMilli();
 
-        // 将时间戳转为当前时间
+        System.out.println("111111111111111111111111111111111111111111111111111111111111111111");
+        System.out.println(milliSecond1);
+        System.out.println(milliSecond2);
+
+        // 将时间戳转为当前时间 不推荐
         LocalDateTime localDateTimea = LocalDateTime.ofEpochSecond(second, 0, ZoneOffset.ofHours(8));
+        //LocalDateTime localDateTimea = LocalDateTime.ofEpochSecond(second, 0, ZoneOffset.of("+8"));
 
+        LocalDateTime localDateTimeB = LocalDateTime.ofInstant(Instant.ofEpochMilli(milliSecond), TimeZone.getDefault().toZoneId());
+
+        // 秒级时间戳转date
+        LocalDateTime localDateTimeC = LocalDateTime.ofInstant(Instant.ofEpochSecond(second), TimeZone.getDefault().toZoneId());
 
     }
 
