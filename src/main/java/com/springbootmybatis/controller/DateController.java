@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -18,27 +17,58 @@ import java.util.TimeZone;
 @RequestMapping("/date")
 public class DateController {
 
-    @GetMapping("/utildate")
-    public void utilDate(){
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String a = simpleDateFormat.format(date);
-        System.out.println(a);
+    @GetMapping("/date")
+    public void date(){
+        // 获取毫秒时间戳
+        // long timestamp = System.currentTimeMillis();
+        long timestamp = new Date().getTime();
 
-        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String b = "2020-10-05 20:28:34";
+        // 时间戳转date
+        Date date = new Date(timestamp);
+        System.out.println(date);
+
+        // 字符串转date
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            Date bb = simpleDateFormat1.parse(b);
-            System.out.println(bb);
+            Date parseDate = simpleDateFormat.parse("2020-10-13 21:01:00");
+            System.out.println(parseDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        // 获取时间戳
-        Long time = new Date().getTime();
-        System.out.println(time);
+        // 格式化date
+        String dateString = simpleDateFormat.format(date);
+        System.out.println(dateString);
+    }
 
-        System.out.println(System.currentTimeMillis());
+    @GetMapping("localdatetime")
+    public void localDateTime(){
+        // 获取秒时间戳
+        long second = LocalDateTime.now().toEpochSecond(ZoneOffset.ofHours(8));
+        long second1 = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
+        long second2 = Instant.now().getEpochSecond();
+        System.out.println(second);
+        System.out.println(second2);
+
+        // 毫秒
+        long milliSecond = Instant.now().toEpochMilli();
+
+        // 时间戳转LocalDateTime
+        LocalDateTime localDateTime = LocalDateTime.ofEpochSecond(second, 0, ZoneOffset.of("+8"));
+        LocalDateTime localDateTime1 = LocalDateTime.ofInstant(Instant.ofEpochSecond(second1), ZoneId.systemDefault());
+        LocalDateTime localDateTime2 = LocalDateTime.ofInstant(Instant.ofEpochSecond(second1), TimeZone.getDefault().toZoneId());
+        System.out.println(localDateTime);
+        System.out.println(localDateTime1);
+        System.out.println(localDateTime2);
+
+        // 字符串转localDateTime
+        LocalDateTime date = LocalDateTime.parse("2020-10-13 21:01:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(date);
+
+        // 格式化
+        String dateStr = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(dateStr);
+
     }
 
     @GetMapping("/dateutil")
@@ -62,135 +92,6 @@ public class DateController {
         //当前日期字符串，格式：yyyy-MM-dd
         String today= DateUtil.today();
         System.out.println(today);
-    }
-
-    @GetMapping("/jdk8")
-    public void localDate(){
-        LocalDate today = LocalDate.now();
-        System.out.println(today);
-
-        LocalDate localDate = LocalDate.of(2017, 1, 4);
-        // 初始化一个日期：2017-01-04
-        System.out.println(localDate);
-
-        int year = localDate.getYear();
-        // 年份：2017
-        System.out.println(year);
-
-        Month month = localDate.getMonth();
-        // 月份：JANUARY
-        System.out.println(month);
-
-        int dayOfMonth = localDate.getDayOfMonth();
-        // 月份中的第几天：4
-        System.out.println(dayOfMonth);
-
-        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
-        // 一周的第几天：WEDNESDAY
-        System.out.println(dayOfWeek);
-
-        int length = localDate.lengthOfMonth();
-        // 月份的天数：31
-        System.out.println(length);
-
-        boolean leapYear = localDate.isLeapYear();
-        // 是否为闰年：false
-        System.out.println(leapYear);
-
-        LocalTime localTime = LocalTime.of(17, 23, 52);
-        // 初始化一个时间：17:23:52
-        System.out.println(localTime);
-
-        int hour = localTime.getHour();
-        // 时：17
-        System.out.println(hour);
-
-        int minute = localTime.getMinute();
-        // 分：23
-        System.out.println(minute);
-
-        int second = localTime.getSecond();
-        // 秒：52
-        System.out.println(second);
-
-        Long second1 = Instant.now().getEpochSecond();// 精确到秒
-        System.out.println(second1);
-
-
-        Long second2 = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
-        System.out.println(second2);
-
-    }
-
-    @GetMapping("/test")
-    public void aa(){
-        /*Date a = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String aa = simpleDateFormat.format(a);
-        System.out.println(aa);
-
-        Long b = 1602404126000L;
-        Date bb = new Date(b);
-        String bbb = simpleDateFormat.format(bb);
-        System.out.println(bbb);
-
-        long aaa = a.getTime();
-        System.out.println(aaa);
-
-        String c = "2020-10-11 16:21:30";
-        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date cc = simpleDateFormat1.parse(c);
-            System.out.println(cc);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
-
-        LocalDate localDate = LocalDate.now();
-
-        LocalDateTime localDateTime = LocalDateTime.now();
-
-        LocalTime localTime = LocalTime.now();
-
-        System.out.println(localDate);
-        System.out.println(localDateTime);
-        System.out.println(localTime);
-
-        String a = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String b = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        System.out.println(a);
-        System.out.println(b);
-
-        // 获得秒时间戳
-        long second = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).getEpochSecond();
-        System.out.println(second);
-
-        Long second1 = Instant.now().getEpochSecond();// 精确到秒
-        System.out.println(second1);
-
-        Long second2 = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
-        System.out.println(second2);
-
-        // 毫秒
-        Long milliSecond = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
-
-        Long milliSecond1 = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-
-        Long milliSecond2 = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId()).toInstant().toEpochMilli();
-
-        System.out.println("111111111111111111111111111111111111111111111111111111111111111111");
-        System.out.println(milliSecond1);
-        System.out.println(milliSecond2);
-
-        // 将时间戳转为当前时间 不推荐
-        LocalDateTime localDateTimea = LocalDateTime.ofEpochSecond(second, 0, ZoneOffset.ofHours(8));
-        //LocalDateTime localDateTimea = LocalDateTime.ofEpochSecond(second, 0, ZoneOffset.of("+8"));
-
-        LocalDateTime localDateTimeB = LocalDateTime.ofInstant(Instant.ofEpochMilli(milliSecond), TimeZone.getDefault().toZoneId());
-
-        // 秒级时间戳转date
-        LocalDateTime localDateTimeC = LocalDateTime.ofInstant(Instant.ofEpochSecond(second), TimeZone.getDefault().toZoneId());
-
     }
 
 }
