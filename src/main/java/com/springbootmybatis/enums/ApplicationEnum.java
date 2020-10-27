@@ -7,7 +7,8 @@ public enum ApplicationEnum {
 
     SUCCESS("2000","业务执行成功"),
 
-
+    NOT_SUPPORT_REQUEST("5000", "不支持的请求方法"),
+    ERROR_POST_PARAM("4000", "访问参数异常"),
 
     PARAMETER_BIND_FAIL("4000","参数绑定失败"),
     PARAMETER_VERIFY_FAIL("4001","参数校验失败"),

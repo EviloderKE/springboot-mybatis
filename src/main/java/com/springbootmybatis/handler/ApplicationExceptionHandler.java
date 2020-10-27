@@ -2,20 +2,19 @@ package com.springbootmybatis.handler;
 
 import com.springbootmybatis.enums.ApplicationEnum;
 import com.springbootmybatis.exception.ApplicationException;
-import com.springbootmybatis.vo.result.FailResult;
+import com.springbootmybatis.vo.result.ErrorResult;
 import com.springbootmybatis.vo.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -30,7 +29,7 @@ import java.util.Map;
  * 如果一个异常能匹配多个 @ExceptionHandler 时，选择匹配深度最小的Exception(即最匹配的Exception)
  */
 @Slf4j
-@ControllerAdvice
+@RestControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
@@ -43,12 +42,10 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
      */
     @ExceptionHandler({ApplicationException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
     public Result handleApplicationException(ApplicationException e) {
         log.error("自定义异常", e);
-        return new FailResult<>(e.getApplicationEnum());
+        return new ErrorResult<>(e.getApplicationEnum());
     }
-
 
     /**
      * 其他异常的处理
@@ -58,10 +55,16 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
      */
     @ExceptionHandler({Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
     public Result handleRuntimeException(Exception e) {
         log.error("程序出错", e);
-        return new FailResult<>();
+        return new ErrorResult<>();
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Result methodNotSupportHandle(HttpRequestMethodNotSupportedException e) {
+        log.error("不支持的请求方法", e);
+        return new ErrorResult<>(ApplicationEnum.NOT_SUPPORT_REQUEST);
     }
 
 
@@ -73,7 +76,6 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
      */
     @ExceptionHandler({ConstraintViolationException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
     public Result handleConstraintViolationException(ConstraintViolationException e) {
         log.error("参数校验失败", e);
         List<Map<String, String>> list = new ArrayList<>();
@@ -89,9 +91,8 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
             map.put("message", message);
             list.add(map);
         }
-        return new FailResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
+        return new ErrorResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
     }
-
 
     /**
      * 表单绑定到 java bean 出错时抛出 BindException 异常
@@ -108,10 +109,22 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
         log.error("参数绑定失败", ex);
         if (ex.hasErrors()) {
             List<Map<String, String>> list = getFieldAndMessage(ex.getAllErrors());
-            FailResult failResult = new FailResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
-            return new ResponseEntity<>(failResult, headers, status);
+            ErrorResult errorResult = new ErrorResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
+            return new ResponseEntity<>(errorResult, headers, status);
         }
         return super.handleBindException(ex, headers, status, request);
+    }
+
+    /**
+     * 请求体不传
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException e) {
+        log.error("请求体参数为空", e);
+        return new ErrorResult(ApplicationEnum.ERROR_POST_PARAM);
     }
 
 
@@ -131,8 +144,8 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
         log.error("请求体绑定失败", ex);
         if (ex.getBindingResult().hasErrors()) {
             List<Map<String, String>> list = getFieldAndMessage(ex.getBindingResult().getAllErrors());
-            FailResult failResult = new FailResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
-            return new ResponseEntity<>(failResult, headers, status);
+            ErrorResult errorResult = new ErrorResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
+            return new ResponseEntity<>(errorResult, headers, status);
         } else {
             return super.handleMethodArgumentNotValid(ex, headers, status, request);
         }

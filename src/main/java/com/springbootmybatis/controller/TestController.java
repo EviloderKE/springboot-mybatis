@@ -5,8 +5,7 @@ import com.springbootmybatis.po.*;
 import com.springbootmybatis.service.LearnService;
 import com.springbootmybatis.service.TestService;
 import com.springbootmybatis.service.TimeService;
-import com.springbootmybatis.service.impl.JpaServiceImpl;
-import com.springbootmybatis.vo.result.FailResult;
+import com.springbootmybatis.vo.result.ErrorResult;
 import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -53,7 +51,7 @@ public class TestController {
         if(learnService.insertOne(learnResource) > 0){
             return new SuccessResult<>();
         }else{
-            return new FailResult<>();
+            return new ErrorResult<>();
         }
     }
 
@@ -69,7 +67,7 @@ public class TestController {
         if(res > 0){
             return new SuccessResult<>();
         }else{
-            return new FailResult<>();
+            return new ErrorResult<>();
         }
     }
 
@@ -85,7 +83,7 @@ public class TestController {
         if(res > 0){
             return new SuccessResult<>();
         }else{
-            return new FailResult<>();
+            return new ErrorResult<>();
         }
     }
 

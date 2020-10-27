@@ -5,7 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.springbootmybatis.po.LearnResource;
 import com.springbootmybatis.service.LearnService;
-import com.springbootmybatis.vo.result.FailResult;
+import com.springbootmybatis.vo.result.ErrorResult;
 import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +23,14 @@ public class LearnController {
     @Autowired
     private LearnService learnService;
 
+    /**
+     * post发生表单请求
+     * 不传递参数
+     * 不加@valid 对象会初始化，
+     * 加@Vailid BindException
+     * @param learnResource
+     * @return
+     */
     @PostMapping(value = "/add")
     public Result add(@Valid LearnResource learnResource){
         int index = learnService.add(learnResource);
@@ -30,7 +38,7 @@ public class LearnController {
         if(index > 0){
             return new SuccessResult<>();
         }else{
-            return new FailResult<>();
+            return new ErrorResult<>();
         }
     }
 
@@ -41,7 +49,7 @@ public class LearnController {
         if(index > 0){
             return new SuccessResult<>();
         }else{
-            return new FailResult<>();
+            return new ErrorResult<>();
         }
     }
 

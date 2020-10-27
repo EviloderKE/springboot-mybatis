@@ -3,8 +3,7 @@ package com.springbootmybatis.controller;
 import com.alibaba.fastjson.JSON;
 import com.springbootmybatis.po.TestJpa;
 import com.springbootmybatis.service.JpaService;
-import com.springbootmybatis.service.impl.JpaServiceImpl;
-import com.springbootmybatis.vo.result.FailResult;
+import com.springbootmybatis.vo.result.ErrorResult;
 import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +31,7 @@ public class JpaController {
         log.info("返回值:{}", test);
         log.info("返回值:{}", JSON.toJSONString(test));
         if(ObjectUtils.isEmpty(test)){
-            return new FailResult<>();
+            return new ErrorResult<>();
         }else{
             return new SuccessResult<>();
         }

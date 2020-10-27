@@ -5,10 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springbootmybatis.dao.DataUsageMapper;
 import com.springbootmybatis.dao.TestMapper;
-import com.springbootmybatis.po.DataUsage;
 import com.springbootmybatis.po.Test;
 import com.springbootmybatis.service.PlusService;
-import com.springbootmybatis.vo.result.FailResult;
+import com.springbootmybatis.vo.result.ErrorResult;
 import com.springbootmybatis.vo.result.Result;
 import com.springbootmybatis.vo.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +52,7 @@ public class PlusController {
         if(b){
             return new SuccessResult<>();
         }else{
-            return new FailResult<>();
+            return new ErrorResult<>();
         }
     }
 
