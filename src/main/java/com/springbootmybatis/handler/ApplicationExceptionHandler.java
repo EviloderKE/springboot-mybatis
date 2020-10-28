@@ -30,7 +30,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestControllerAdvice
-public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
+public class ApplicationExceptionHandler{
 
     /**
      * 处理自定义 ApplicationException 异常
@@ -97,22 +97,14 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     /**
      * 表单绑定到 java bean 出错时抛出 BindException 异常
      *
-     * @param ex
-     * @param headers
-     * @param status
-     * @param request
      * @return
      */
-    @Override
-    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status,
-                                                         WebRequest request) {
-        log.error("参数绑定失败", ex);
-        if (ex.hasErrors()) {
-            List<Map<String, String>> list = getFieldAndMessage(ex.getAllErrors());
-            ErrorResult errorResult = new ErrorResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
-            return new ResponseEntity<>(errorResult, headers, status);
-        }
-        return super.handleBindException(ex, headers, status, request);
+    @ExceptionHandler({BindException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result handleBindException(BindException e) {
+        log.error("参数绑定失败", e);
+        List<Map<String, String>> list = getFieldAndMessage(e.getAllErrors());
+        return new ErrorResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
     }
 
     /**
@@ -131,24 +123,15 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     /**
      * 将请求体解析并绑定到 java bean 时，如果出错，则抛出 MethodArgumentNotValidException 异常
      *
-     * @param ex
-     * @param headers
-     * @param status
-     * @param request
      * @return
      */
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, HttpStatus status,
-                                                                  WebRequest request) {
-        log.error("请求体绑定失败", ex);
-        if (ex.getBindingResult().hasErrors()) {
-            List<Map<String, String>> list = getFieldAndMessage(ex.getBindingResult().getAllErrors());
-            ErrorResult errorResult = new ErrorResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
-            return new ResponseEntity<>(errorResult, headers, status);
-        } else {
-            return super.handleMethodArgumentNotValid(ex, headers, status, request);
-        }
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected Result handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
+        log.error("请求体绑定失败", e);
+        List<Map<String, String>> list = getFieldAndMessage(e.getBindingResult().getAllErrors());
+        return new ErrorResult<>(ApplicationEnum.PARAMETER_BIND_FAIL, list);
+
     }
 
 
