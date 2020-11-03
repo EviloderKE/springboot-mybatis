@@ -24,4 +24,12 @@ public class AsyncService {
         System.out.println(2);
     }
 
+
+    @Async("asyncTaskExecutor")
+    public synchronized void test1(){
+        for (int i = 0; i < 10; i++) {
+            log.info("{}", i);
+        }
+    }
+
 }

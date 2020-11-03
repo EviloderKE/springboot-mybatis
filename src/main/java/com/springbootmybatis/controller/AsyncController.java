@@ -21,4 +21,13 @@ public class AsyncController {
         System.out.println(1);
     }
 
+    @GetMapping("sync")
+    public void sync(){
+
+        asyncService.test1();
+
+        asyncService.test1();
+
+    }
+
 }
