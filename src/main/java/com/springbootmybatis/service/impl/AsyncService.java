@@ -10,15 +10,17 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class AsyncService {
 
-    @Async
+    @Async("asyncTaskExecutor")
     public void test(){
 
+        log.info("线程开始");
         try {
             TimeUnit.SECONDS.sleep(5);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        log.info("线程结束");
         System.out.println(2);
     }
 
