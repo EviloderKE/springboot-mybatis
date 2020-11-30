@@ -2,9 +2,11 @@ package com.springbootmybatis.listen;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
+@Profile("rabbitmq")
 @RabbitListener(queues = "hello")
 public class Tut1Receiver {
 
