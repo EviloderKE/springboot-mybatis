@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-@Profile({"tut2"})
+@Profile("tut2")
 @Configuration
 public class Tut2Config {
 

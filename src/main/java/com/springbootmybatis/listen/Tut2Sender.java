@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Profile({"tut2"})
+@Profile("tut2")
 public class Tut2Sender {
 
     @Autowired

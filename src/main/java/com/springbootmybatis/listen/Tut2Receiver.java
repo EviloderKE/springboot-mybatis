@@ -5,7 +5,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.Profile;
 import org.springframework.util.StopWatch;
 
-@Profile({"tut2"})
+@Profile("tut2")
 @RabbitListener(queues = "hello")
 public class Tut2Receiver {
 
