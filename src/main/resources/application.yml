@@ -2,14 +2,12 @@ logging:
   file:
     path: ./logs
   level:
-    com:
-      springbootmybatis:
-        dao: DEBUG
-    org:
-      springframework:
-        jdbc:
-          datasource:
-            DataSourceTransactionManager: DEBUG
+    com.springbootmybatis.dao: DEBUG
+    #org.springframework.transaction.interceptor: trace
+    # 事务日志 开启上面或者下面两个jpa debug必须要开启
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
+    #org.springframework.jdbc.datasource.DataSourceTransactionManager: DEBUG
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
 
