@@ -30,13 +30,13 @@ class SpringbootMybatisApplicationTests {
     void test(){
         List<String> a = new ArrayList<>();
 
-        String dataA[] = {"a", "b", "c"};
+        String[] dataA = {"a", "b", "c"};
 
         Collections.addAll(a, dataA);
 
         List<String> b = new ArrayList<>();
 
-        String dataB[] = {"a", "d"};
+        String[] dataB = {"a", "d"};
 
         Collections.addAll(b, dataB);
 
