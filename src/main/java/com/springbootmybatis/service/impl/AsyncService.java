@@ -2,8 +2,12 @@ package com.springbootmybatis.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -30,6 +34,22 @@ public class AsyncService {
         for (int i = 0; i < 10; i++) {
             log.info("{}", i);
         }
+    }
+
+    @Async("asyncTaskExecutor")
+    public Future<String> returnValue(){
+        log.info("线程开始");
+        return new AsyncResult<>("aa");
+    }
+
+    @Async("asyncTaskExecutor")
+    public Future<List<String>> returnValue2(){
+        log.info("线程开始");
+
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("a");
+
+        return new AsyncResult<>(strings);
     }
 
 }
