@@ -165,6 +165,7 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
+                    <!--  springboot 2.4已移除 -->
                     <groupId>org.junit.vintage</groupId>
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
