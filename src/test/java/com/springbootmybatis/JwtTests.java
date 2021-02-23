@@ -18,6 +18,7 @@ public class JwtTests {
         Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
         String jws = Jwts.builder()
+                .claim("name", "zk")
                 .setHeaderParam("type", "jwt")
                 .setSubject("Joe")
                 .signWith(key)
@@ -29,6 +30,8 @@ public class JwtTests {
         String subject = null;
         try {
             subject = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jws).getBody().getSubject();
+            Object name = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jws).getBody().get("name");
+            System.out.println(name);
         } catch (ExpiredJwtException e) {
             e.printStackTrace();
         } catch (UnsupportedJwtException e) {
