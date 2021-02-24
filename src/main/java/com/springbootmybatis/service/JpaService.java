@@ -1,6 +1,6 @@
 package com.springbootmybatis.service;
 
-import com.springbootmybatis.po.TestJpa;
+import com.springbootmybatis.domain.po.TestJpa;
 
 public interface JpaService {
     TestJpa findById(Long id);

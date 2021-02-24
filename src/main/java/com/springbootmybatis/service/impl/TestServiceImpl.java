@@ -1,9 +1,7 @@
 package com.springbootmybatis.service.impl;
 
-import com.springbootmybatis.dao.TestJpaMapper;
 import com.springbootmybatis.dao.TestMapper;
-import com.springbootmybatis.po.Test;
-import com.springbootmybatis.po.TestJpa;
+import com.springbootmybatis.domain.po.Test;
 import com.springbootmybatis.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,11 +3,11 @@ package com.springbootmybatis.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.springbootmybatis.po.LearnResource;
+import com.springbootmybatis.domain.po.LearnResource;
 import com.springbootmybatis.service.LearnService;
-import com.springbootmybatis.vo.result.ErrorResult;
-import com.springbootmybatis.vo.result.Result;
-import com.springbootmybatis.vo.result.SuccessResult;
+import com.springbootmybatis.domain.result.ErrorResult;
+import com.springbootmybatis.domain.result.Result;
+import com.springbootmybatis.domain.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -59,7 +59,7 @@ public class LearnController {
         return learnResource;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @PostMapping(value = "/update")
     public String update(HttpServletRequest request){
         String id = request.getParameter("id");
 
@@ -82,7 +82,7 @@ public class LearnController {
 
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @PostMapping(value = "/delete")
     public String delete(HttpServletRequest request){
 
         String ids = request.getParameter("ids");

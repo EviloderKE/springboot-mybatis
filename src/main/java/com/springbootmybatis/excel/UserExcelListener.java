@@ -3,7 +3,7 @@ package com.springbootmybatis.excel;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.fastjson.JSON;
-import com.springbootmybatis.qo.UserExcel;
+import com.springbootmybatis.domain.qo.UserExcel;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;

@@ -2,12 +2,10 @@ package com.springbootmybatis.handler;
 
 import com.springbootmybatis.enums.ApplicationEnum;
 import com.springbootmybatis.exception.ApplicationException;
-import com.springbootmybatis.vo.result.ErrorResult;
-import com.springbootmybatis.vo.result.Result;
+import com.springbootmybatis.domain.result.ErrorResult;
+import com.springbootmybatis.domain.result.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -15,8 +13,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;

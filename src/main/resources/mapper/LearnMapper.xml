@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springbootmybatis.dao.LearnMapper">
-    <resultMap id="baseResultMap" type="com.springbootmybatis.po.LearnResource">
+    <resultMap id="baseResultMap" type="com.springbootmybatis.domain.po.LearnResource">
         <id column="id" property="id" jdbcType="BIGINT"  />
         <result column="author" property="author" jdbcType="VARCHAR"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
@@ -35,11 +35,11 @@
         WHERE id = #{id}
     </select>
 
-    <insert id="add" parameterType="com.springbootmybatis.po.LearnResource" >
+    <insert id="add" parameterType="com.springbootmybatis.domain.po.LearnResource" >
     INSERT INTO learn_resource (author, title,url) VALUES (#{author}, #{title}, #{url})
   </insert>
 
-    <update id="update" parameterType="com.springbootmybatis.po.LearnResource" >
+    <update id="update" parameterType="com.springbootmybatis.domain.po.LearnResource" >
     UPDATE learn_resource SET author = #{author},title = #{title},url = #{url} WHERE id = #{id}
   </update>
 
@@ -54,7 +54,7 @@
         DELETE FROM learn_resource WHERE id = #{id}
     </delete>
 
-    <insert id="addOne" parameterType="com.springbootmybatis.po.LearnResource" >
+    <insert id="addOne" parameterType="com.springbootmybatis.domain.po.LearnResource" >
         INSERT INTO learn_resource (author, title,url) VALUES (#{author}, #{title}, #{url})
     </insert>
 

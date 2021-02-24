@@ -1,4 +1,4 @@
-package com.springbootmybatis.po;
+package com.springbootmybatis.domain.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

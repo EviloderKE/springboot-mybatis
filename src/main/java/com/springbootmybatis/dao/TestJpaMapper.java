@@ -1,6 +1,6 @@
 package com.springbootmybatis.dao;
 
-import com.springbootmybatis.po.TestJpa;
+import com.springbootmybatis.domain.po.TestJpa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.springbootmybatis.po;
+package com.springbootmybatis.domain.po;
 
 public class Car {
     private Long id;

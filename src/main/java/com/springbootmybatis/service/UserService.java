@@ -1,6 +1,6 @@
 package com.springbootmybatis.service;
 
-import com.springbootmybatis.po.User;
+import com.springbootmybatis.domain.po.User;
 
 public interface UserService {
 

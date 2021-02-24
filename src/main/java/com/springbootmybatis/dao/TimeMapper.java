@@ -1,7 +1,7 @@
 package com.springbootmybatis.dao;
 
-import com.springbootmybatis.po.Time;
-import com.springbootmybatis.po.TimeDate;
+import com.springbootmybatis.domain.po.Time;
+import com.springbootmybatis.domain.po.TimeDate;
 
 public interface TimeMapper {
 

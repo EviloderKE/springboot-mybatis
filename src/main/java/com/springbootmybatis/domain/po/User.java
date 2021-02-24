@@ -1,4 +1,4 @@
-package com.springbootmybatis.po;
+package com.springbootmybatis.domain.po;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
 package com.springbootmybatis.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.springbootmybatis.po.TestJpa;
+import com.springbootmybatis.domain.po.TestJpa;
 import com.springbootmybatis.service.JpaService;
-import com.springbootmybatis.vo.result.ErrorResult;
-import com.springbootmybatis.vo.result.Result;
-import com.springbootmybatis.vo.result.SuccessResult;
+import com.springbootmybatis.domain.result.ErrorResult;
+import com.springbootmybatis.domain.result.Result;
+import com.springbootmybatis.domain.result.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.springbootmybatis.vo.result;
+package com.springbootmybatis.domain.result;
 
 
 import com.springbootmybatis.enums.ApplicationEnum;

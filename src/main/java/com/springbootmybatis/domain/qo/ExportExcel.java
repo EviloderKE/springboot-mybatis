@@ -1,4 +1,4 @@
-package com.springbootmybatis.qo;
+package com.springbootmybatis.domain.qo;
 
 import lombok.Data;
 

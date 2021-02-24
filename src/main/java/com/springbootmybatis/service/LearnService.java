@@ -1,6 +1,6 @@
 package com.springbootmybatis.service;
 
-import com.springbootmybatis.po.LearnResource;
+import com.springbootmybatis.domain.po.LearnResource;
 
 import java.util.List;
 

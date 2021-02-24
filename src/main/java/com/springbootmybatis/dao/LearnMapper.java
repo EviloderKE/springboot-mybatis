@@ -1,8 +1,7 @@
 package com.springbootmybatis.dao;
 
-import com.springbootmybatis.po.LearnResource;
+import com.springbootmybatis.domain.po.LearnResource;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 

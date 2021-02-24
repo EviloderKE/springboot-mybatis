@@ -2,8 +2,8 @@ package com.springbootmybatis.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.springbootmybatis.excel.UserExcelListener;
-import com.springbootmybatis.qo.ExportExcel;
-import com.springbootmybatis.qo.UserExcel;
+import com.springbootmybatis.domain.qo.ExportExcel;
+import com.springbootmybatis.domain.qo.UserExcel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
