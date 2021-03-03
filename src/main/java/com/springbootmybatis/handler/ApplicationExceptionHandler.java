@@ -12,7 +12,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
@@ -152,5 +154,29 @@ public class ApplicationExceptionHandler{
             list.add(map);
         }
         return list;
+    }
+
+    /**
+     * 缺少参数
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result<String> missingParams(MissingServletRequestParameterException e) {
+        String message = "缺少参数:" + e.getParameterName();
+        return new ErrorResult<>(ApplicationEnum.ERROR_POST_PARAM, message);
+    }
+
+    /**
+     * 参数格式错误
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result<String> IllegalParams(MethodArgumentTypeMismatchException e) {
+        String message = e.getName() + "格式错误!";
+        return new ErrorResult<>(ApplicationEnum.ERROR_POST_PARAM, message);
     }
 }
